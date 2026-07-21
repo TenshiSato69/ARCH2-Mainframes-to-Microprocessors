@@ -107,19 +107,19 @@ An interactive timeline that lets users compare ENIAC, IBM System/360, and Intel
 
 ### Stage 2: Development (Upcoming)
 
-- [ ] Scaffold Astro project from the provided template (Node.js 26, Astro 6)
-- [ ] Set up content collections for milestone data (ENIAC, System/360, Intel 4004)
-- [ ] Build the interactive timeline component
-- [ ] Implement architecture diagram view
-- [ ] Implement mobile stepper layout
-- [ ] Write exhibit content in `topic_name.mdx`
-- [ ] Style pass to match shared museum template
+- [/] Scaffold Astro project from the provided template (Node.js 26, Astro 6)
+- [/] Set up content collections for milestone data (ENIAC, System/360, Intel 4004)
+- [/] Build the interactive timeline component
+- [/] Implement architecture diagram view
+- [/] Implement mobile stepper layout
+- [/] Write exhibit content in `topic_name.mdx`
+- [/] Style pass to match shared museum template
 
 ### Stage 3: Final Exhibit (Upcoming)
 
-- [ ] Integration testing with merged museum site
-- [ ] Accessibility and mobile responsiveness review
-- [ ] Final content review and submission
+- [/] Integration testing with merged museum site
+- [/] Accessibility and mobile responsiveness review
+- [/] Final content review and submission
 
 ### AI/LLM Disclosure
 
