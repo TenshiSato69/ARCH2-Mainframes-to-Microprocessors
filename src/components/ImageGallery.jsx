@@ -9,16 +9,16 @@
  * This component demonstrates several key React concepts:
  * - Function component: A component is just a function that returns JSX (the
  *   HTML-like markup you see in the `return`).
- * 
+ *
  * - Props: Data passed in from the parent (here, the `photos` array). We give
  *   it a default of `[]` so the component never crashes if it's left out.
- * 
+ *
  * - State with useState: `current` remembers which photo is showing. Calling
  *   `setCurrent` tells React to re-render with the new value.
- * 
+ *
  * - Side effects with useEffect: Used here to listen for keyboard presses and
  *   to clean that listener up when the component is removed.
- * 
+ *
  * - Inline styles: Styles are plain JS objects (see the `styles` object at the
  *   bottom). CSS property names become camelCase, e.g. `font-size` -> `fontSize`.
  *
@@ -124,18 +124,10 @@ export default function ImageGallery({ photos = [] }) {
 
         {/* Previous / next buttons. onClick calls go() with the direction.
             aria-label gives screen readers a description of each button. */}
-        <button
-          style={{ ...styles.navBtn, left: 12 }}
-          onClick={() => go(-1)}
-          aria-label="Previous photo"
-        >
+        <button style={{ ...styles.navBtn, left: 12 }} onClick={() => go(-1)} aria-label="Previous photo">
           ‹
         </button>
-        <button
-          style={{ ...styles.navBtn, right: 12 }}
-          onClick={() => go(1)}
-          aria-label="Next photo"
-        >
+        <button style={{ ...styles.navBtn, right: 12 }} onClick={() => go(1)} aria-label="Next photo">
           ›
         </button>
 
@@ -150,9 +142,7 @@ export default function ImageGallery({ photos = [] }) {
       <div style={styles.caption}>
         <div>
           <div style={styles.captionTitle}>{photo.title}</div>
-          {photo.tagline && (
-            <div style={styles.captionTagline}>{photo.tagline}</div>
-          )}
+          {photo.tagline && <div style={styles.captionTagline}>{photo.tagline}</div>}
           <div style={styles.captionMeta}>
             {photo.author} / {photo.year}
           </div>

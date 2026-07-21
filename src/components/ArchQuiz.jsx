@@ -25,7 +25,7 @@ import { useState } from "react";
 // option, and a short explanation shown during the review at the end.
 const questions = [
   {
-    text: "What made ENIAC's \"programming\" so labor-intensive?",
+    text: 'What made ENIAC\'s "programming" so labor-intensive?',
     options: [
       "It had to be rewired and switched by hand for each new task",
       "It required a punch-card compiler to be recompiled",
@@ -33,13 +33,15 @@ const questions = [
       "It only accepted programs written in assembly",
     ],
     correct: 0,
-    explain: "ENIAC had no stored-program memory -- operators physically re-plugged cables and set switches to change what it computed.",
+    explain:
+      "ENIAC had no stored-program memory -- operators physically re-plugged cables and set switches to change what it computed.",
   },
   {
     text: "Roughly how many vacuum tubes powered ENIAC?",
     options: ["1,800", "18,000", "180,000", "1,800,000"],
     correct: 1,
-    explain: "ENIAC used about 18,000 vacuum tubes, which is also why it ran hot, drew huge amounts of power, and filled an entire room.",
+    explain:
+      "ENIAC used about 18,000 vacuum tubes, which is also why it ran hot, drew huge amounts of power, and filled an entire room.",
   },
   {
     text: "What was the big architectural innovation of the IBM System/360?",
@@ -50,13 +52,15 @@ const questions = [
       "It eliminated the need for an operating system",
     ],
     correct: 2,
-    explain: "System/360 let software run unmodified across many different hardware models -- decoupling programs from the specific machine they ran on.",
+    explain:
+      "System/360 let software run unmodified across many different hardware models -- decoupling programs from the specific machine they ran on.",
   },
   {
     text: "What component replaced the vacuum tube in the System/360 generation?",
     options: ["The transistor", "The relay", "The punch card", "The silicon wafer"],
     correct: 0,
-    explain: "Discrete transistors were smaller, cooler-running, and far more reliable than the fragile tubes they replaced.",
+    explain:
+      "Discrete transistors were smaller, cooler-running, and far more reliable than the fragile tubes they replaced.",
   },
   {
     text: "What was the key breakthrough of the Intel 4004?",
@@ -67,7 +71,8 @@ const questions = [
       "It was the first machine to run Linux",
     ],
     correct: 1,
-    explain: "The 4004 integrated the control unit, registers, and ALU onto one chip -- work that previously took cabinets of hardware.",
+    explain:
+      "The 4004 integrated the control unit, registers, and ALU onto one chip -- work that previously took cabinets of hardware.",
   },
   {
     text: "Which best orders these three milestones from oldest to newest?",
@@ -78,7 +83,8 @@ const questions = [
       "ENIAC -> Intel 4004 -> System/360",
     ],
     correct: 2,
-    explain: "ENIAC (1945) came first, System/360 (1964) next, and the Intel 4004 (1971) completed the shift to single-chip computing.",
+    explain:
+      "ENIAC (1945) came first, System/360 (1964) next, and the Intel 4004 (1971) completed the shift to single-chip computing.",
   },
 ];
 
@@ -103,15 +109,21 @@ const styles = {
     gap: 12,
     borderRadius: "var(--border-radius-md)",
     border:
-      state === "correct" ? "2px solid #4CAF50" :
-      state === "wrong" ? "2px solid #e0524b" :
-      state === "selected" ? "2px solid var(--color-border-info)" :
-      "0.5px solid var(--color-border-secondary)",
+      state === "correct"
+        ? "2px solid #4CAF50"
+        : state === "wrong"
+          ? "2px solid #e0524b"
+          : state === "selected"
+            ? "2px solid var(--color-border-info)"
+            : "0.5px solid var(--color-border-secondary)",
     background:
-      state === "correct" ? "rgba(76,175,80,0.12)" :
-      state === "wrong" ? "rgba(224,82,75,0.12)" :
-      state === "selected" ? "var(--color-background-info)" :
-      "var(--color-background-primary)",
+      state === "correct"
+        ? "rgba(76,175,80,0.12)"
+        : state === "wrong"
+          ? "rgba(224,82,75,0.12)"
+          : state === "selected"
+            ? "var(--color-background-info)"
+            : "var(--color-background-primary)",
     transition: "border-color 0.12s, background 0.12s",
     fontFamily: "var(--font-sans)",
   }),
@@ -122,10 +134,13 @@ const styles = {
     height: 24,
     borderRadius: "50%",
     border:
-      state === "correct" ? "2.5px solid #4CAF50" :
-      state === "wrong" ? "2.5px solid #e0524b" :
-      state === "selected" ? "2.5px solid var(--color-text-info)" :
-      "2.5px solid #8a8a8a",
+      state === "correct"
+        ? "2.5px solid #4CAF50"
+        : state === "wrong"
+          ? "2.5px solid #e0524b"
+          : state === "selected"
+            ? "2.5px solid var(--color-text-info)"
+            : "2.5px solid #8a8a8a",
     background: "var(--color-background-primary)",
     display: "flex",
     alignItems: "center",
@@ -136,10 +151,7 @@ const styles = {
     width: 13,
     height: 13,
     borderRadius: "50%",
-    background:
-      state === "correct" ? "#4CAF50" :
-      state === "wrong" ? "#e0524b" :
-      "var(--color-text-info)",
+    background: state === "correct" ? "#4CAF50" : state === "wrong" ? "#e0524b" : "var(--color-text-info)",
   }),
   nextBtn: (enabled) => ({
     cursor: enabled ? "pointer" : "not-allowed",
@@ -189,9 +201,7 @@ export default function ArchQuiz() {
     setLocked(false);
   }
 
-  const score = isResult
-    ? answers.reduce((acc, a, i) => acc + (a === questions[i].correct ? 1 : 0), 0)
-    : 0;
+  const score = isResult ? answers.reduce((acc, a, i) => acc + (a === questions[i].correct ? 1 : 0), 0) : 0;
 
   return (
     <div style={{ padding: "1.5rem 0", fontFamily: "var(--font-sans)" }}>
@@ -199,7 +209,8 @@ export default function ArchQuiz() {
       {isIntro && (
         <div>
           <p style={{ color: "var(--color-text-secondary)", marginBottom: "1.25rem", fontSize: 15, lineHeight: 1.6 }}>
-            Test what you've learned about ENIAC, the IBM System/360, and the Intel 4004 across {totalQ} quick questions.
+            Test what you've learned about ENIAC, the IBM System/360, and the Intel 4004 across {totalQ} quick
+            questions.
           </p>
           <button style={styles.nextBtn(true)} onClick={() => setStep(1)}>
             Start the quiz →
@@ -219,9 +230,7 @@ export default function ArchQuiz() {
           <p style={{ fontSize: 13, color: "var(--color-text-secondary)", margin: "0 0 0.4rem" }}>
             Question {step} of {totalQ}
           </p>
-          <h3 style={{ margin: "0 0 1.25rem", fontSize: 18, fontWeight: 500 }}>
-            {currentQ.text}
-          </h3>
+          <h3 style={{ margin: "0 0 1.25rem", fontSize: 18, fontWeight: 500 }}>{currentQ.text}</h3>
 
           <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: "1.25rem" }}>
             {currentQ.options.map((opt, i) => {
@@ -254,11 +263,17 @@ export default function ArchQuiz() {
 
           {/* Explanation shown once the answer is locked in */}
           {locked && (
-            <p style={{
-              fontSize: 13, lineHeight: 1.6, color: "var(--color-text-secondary)",
-              background: "var(--color-background-secondary)", padding: "10px 14px",
-              borderRadius: "var(--border-radius-md)", marginBottom: "1.25rem",
-            }}>
+            <p
+              style={{
+                fontSize: 13,
+                lineHeight: 1.6,
+                color: "var(--color-text-secondary)",
+                background: "var(--color-background-secondary)",
+                padding: "10px 14px",
+                borderRadius: "var(--border-radius-md)",
+                marginBottom: "1.25rem",
+              }}
+            >
               {selected === currentQ.correct ? "Correct! " : "Not quite. "}
               {currentQ.explain}
             </p>
@@ -279,17 +294,17 @@ export default function ArchQuiz() {
       {/* -- Result -- */}
       {isResult && (
         <div>
-          <div style={{
-            background: "var(--color-background-primary)",
-            border: "2px solid var(--color-border-info)",
-            borderRadius: "var(--border-radius-lg)",
-            padding: "1.25rem",
-            marginBottom: "1rem",
-            textAlign: "center",
-          }}>
-            <div style={{ fontSize: 13, color: "var(--color-text-secondary)", marginBottom: 6 }}>
-              Your score
-            </div>
+          <div
+            style={{
+              background: "var(--color-background-primary)",
+              border: "2px solid var(--color-border-info)",
+              borderRadius: "var(--border-radius-lg)",
+              padding: "1.25rem",
+              marginBottom: "1rem",
+              textAlign: "center",
+            }}
+          >
+            <div style={{ fontSize: 13, color: "var(--color-text-secondary)", marginBottom: 6 }}>Your score</div>
             <div style={{ fontSize: 32, fontWeight: 600, color: "var(--color-text-primary)" }}>
               {score} / {totalQ}
             </div>
@@ -300,12 +315,15 @@ export default function ArchQuiz() {
             {questions.map((q, i) => {
               const correct = answers[i] === q.correct;
               return (
-                <div key={i} style={{
-                  padding: "10px 14px",
-                  borderRadius: "var(--border-radius-md)",
-                  border: `0.5px solid var(--color-border-secondary)`,
-                  fontSize: 13,
-                }}>
+                <div
+                  key={i}
+                  style={{
+                    padding: "10px 14px",
+                    borderRadius: "var(--border-radius-md)",
+                    border: `0.5px solid var(--color-border-secondary)`,
+                    fontSize: 13,
+                  }}
+                >
                   <div style={{ color: correct ? "#4CAF50" : "#e0524b", fontWeight: 600, marginBottom: 3 }}>
                     {correct ? "✓ Correct" : "✕ Missed"} — Q{i + 1}
                   </div>

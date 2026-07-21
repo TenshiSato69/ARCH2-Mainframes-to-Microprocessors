@@ -10,17 +10,17 @@
  * - Multiple pieces of state: We track three things at once with useState --
  *   which screen we're on (`step`), the answers chosen so far (`answers`), and the
  *   option highlighted on the current question (`selected`).
- * 
+ *
  * - Conditional rendering: Instead of separate pages, one component shows the
  *   intro, a question, or the result depending on `step`. The `{condition && <…/>}`
  *   pattern renders a block only when the condition is true.
- * 
+ *
  * - Lists with .map(): Questions, options, progress bars, and tags are all
  *   arrays turned into JSX with `.map()`. Each item needs a unique `key`.
- * 
+ *
  * - Updating state immutably: We never push into the old array. Instead we make
  *   a new one with `[...prev, selected]` so React notices the change and re-renders.
- * 
+ *
  * - Data-driven UI: All the content lives in plain objects/arrays near the top
  *   (`questions`, `distros`, `scoring`). The JSX below just renders whatever's there,
  *   so you can edit the quiz without touching the component logic.
@@ -227,7 +227,9 @@ function getResult(answers) {
   // `scoring[a] ?? {}` falls back to an empty object if an answer has no points.
   answers.forEach((a) => {
     const pts = scoring[a] ?? {};
-    Object.entries(pts).forEach(([d, v]) => { scores[d] += v; });
+    Object.entries(pts).forEach(([d, v]) => {
+      scores[d] += v;
+    });
   });
 
   // Sort the [distroKey, score] pairs from highest to lowest and take the top one.
@@ -256,12 +258,8 @@ const styles = {
     width: "100%",
     display: "block",
     borderRadius: "var(--border-radius-md)",
-    border: active
-      ? "2px solid var(--color-border-info)"
-      : "0.5px solid var(--color-border-secondary)",
-    background: active
-      ? "var(--color-background-info)"
-      : "var(--color-background-primary)",
+    border: active ? "2px solid var(--color-border-info)" : "0.5px solid var(--color-border-secondary)",
+    background: active ? "var(--color-background-info)" : "var(--color-background-primary)",
     boxShadow: active ? "0 0 0 3px var(--color-background-info)" : "none",
     transform: active ? "translateY(-1px)" : "none",
     transition: "border-color 0.12s, background 0.12s, box-shadow 0.12s, transform 0.12s",
@@ -331,7 +329,6 @@ export default function DistroQuiz() {
 
   return (
     <div style={{ padding: "1.5rem 0", fontFamily: "var(--font-sans)" }}>
-
       {/* -- Intro -- */}
       {isIntro && (
         <div>
@@ -357,16 +354,16 @@ export default function DistroQuiz() {
           <p style={{ fontSize: 13, color: "var(--color-text-secondary)", margin: "0 0 0.4rem" }}>
             Question {step} of {totalQ}
           </p>
-          <h3 style={{ margin: "0 0 1.25rem", fontSize: 18, fontWeight: 500 }}>
-            {currentQ.text}
-          </h3>
+          <h3 style={{ margin: "0 0 1.25rem", fontSize: 18, fontWeight: 500 }}>{currentQ.text}</h3>
 
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-            gap: 10,
-            marginBottom: "1.25rem",
-          }}>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+              gap: 10,
+              marginBottom: "1.25rem",
+            }}
+          >
             {/* Render one button per option. Clicking sets it as `selected`;
                 isSelected then drives the styling and the checkmark below. */}
             {currentQ.options.map((opt) => {
@@ -379,18 +376,18 @@ export default function DistroQuiz() {
                   aria-pressed={isSelected}
                 >
                   {isSelected && <span style={styles.checkmark}>✓</span>}
-                  <div style={{
-                    fontWeight: isSelected ? 600 : 500,
-                    fontSize: 14,
-                    color: isSelected ? "var(--color-text-info)" : "var(--color-text-primary)",
-                    marginBottom: 3,
-                    paddingRight: 16,
-                  }}>
+                  <div
+                    style={{
+                      fontWeight: isSelected ? 600 : 500,
+                      fontSize: 14,
+                      color: isSelected ? "var(--color-text-info)" : "var(--color-text-primary)",
+                      marginBottom: 3,
+                      paddingRight: 16,
+                    }}
+                  >
                     {opt.label}
                   </div>
-                  <div style={{ fontSize: 12, color: "var(--color-text-secondary)" }}>
-                    {opt.desc}
-                  </div>
+                  <div style={{ fontSize: 12, color: "var(--color-text-secondary)" }}>{opt.desc}</div>
                 </button>
               );
             })}
@@ -410,29 +407,34 @@ export default function DistroQuiz() {
           <p style={{ fontSize: 13, color: "var(--color-text-secondary)", margin: "0 0 0.5rem" }}>
             Your recommended distro
           </p>
-          <div style={{
-            background: "var(--color-background-primary)",
-            border: "2px solid var(--color-border-info)",
-            borderRadius: "var(--border-radius-lg)",
-            padding: "1.25rem",
-            marginBottom: "1rem",
-          }}>
+          <div
+            style={{
+              background: "var(--color-background-primary)",
+              border: "2px solid var(--color-border-info)",
+              borderRadius: "var(--border-radius-lg)",
+              padding: "1.25rem",
+              marginBottom: "1rem",
+            }}
+          >
             {/* Header */}
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 12 }}>
               <div style={{ width: 14, height: 14, borderRadius: "50%", background: result.color, flexShrink: 0 }} />
               <div style={{ flex: 1 }}>
-                <div style={{ fontSize: 22, fontWeight: 500, color: "var(--color-text-primary)" }}>
-                  {result.name}
-                </div>
+                <div style={{ fontSize: 22, fontWeight: 500, color: "var(--color-text-primary)" }}>{result.name}</div>
                 <div style={{ fontSize: 13, color: "var(--color-text-secondary)", fontStyle: "italic" }}>
                   {result.tagline}
                 </div>
               </div>
-              <span style={{
-                fontSize: 12, padding: "3px 10px",
-                background: "var(--color-background-info)", color: "var(--color-text-info)",
-                borderRadius: "var(--border-radius-md)", whiteSpace: "nowrap",
-              }}>
+              <span
+                style={{
+                  fontSize: 12,
+                  padding: "3px 10px",
+                  background: "var(--color-background-info)",
+                  color: "var(--color-text-info)",
+                  borderRadius: "var(--border-radius-md)",
+                  whiteSpace: "nowrap",
+                }}
+              >
                 Since {result.year}
               </span>
             </div>
@@ -445,7 +447,9 @@ export default function DistroQuiz() {
             {/* Tags */}
             <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: "1rem" }}>
               {result.tags.map((t) => (
-                <span key={t} style={styles.tag}>{t}</span>
+                <span key={t} style={styles.tag}>
+                  {t}
+                </span>
               ))}
             </div>
 

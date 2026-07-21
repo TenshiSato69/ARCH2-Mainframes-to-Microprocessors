@@ -1,0 +1,18 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+
+  "printWidth": 120,
+  "sortImports": {
+    "groups": [
+      "side_effect",
+      "side_effect_style",
+      "builtin",
+      "external",
+      ["internal", "subpath"],
+      ["parent", "sibling", "index"],
+      "style",
+      "unknown"
+    ]
+  },
+  "sortPackageJson": { "sortScripts": true }
+}

@@ -1,10 +1,12 @@
 {
   "name": "virtual-exhibit-template",
-  "type": "module",
   "version": "0.0.1",
+  "type": "module",
   "scripts": {
-    "dev": "astro dev",
     "build": "astro build",
+    "dev": "astro dev",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check",
     "preview": "astro preview"
   },
   "dependencies": {
@@ -22,6 +24,8 @@
   },
   "devDependencies": {
     "@types/react": "^18.3.1",
-    "@types/react-dom": "^18.3.1"
-  }
+    "@types/react-dom": "^18.3.1",
+    "oxfmt": "^0.59.0"
+  },
+  "packageManager": "npm@12.0.1+sha512.2f94fd8bf600416416a934bfc59c4991e8bff7372ef7d842784e2a8b8d48c81555ee645069ddea73625fb8e92dc261feab0188fd5dab6c22fefd46316f5f9140"
 }
