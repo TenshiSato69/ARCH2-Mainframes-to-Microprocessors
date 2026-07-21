@@ -204,11 +204,18 @@ export default function ArchQuiz() {
   const score = isResult ? answers.reduce((acc, a, i) => acc + (a === questions[i].correct ? 1 : 0), 0) : 0;
 
   return (
-    <div style={{ padding: "1.5rem 0", fontFamily: "var(--font-sans)" }}>
+    <div style={{ fontFamily: "var(--font-sans)" }}>
       {/* -- Intro -- */}
       {isIntro && (
         <div>
-          <p style={{ color: "var(--color-text-secondary)", marginBottom: "1.25rem", fontSize: 15, lineHeight: 1.6 }}>
+          <p
+            style={{
+              color: "var(--color-text-secondary)",
+              marginBottom: "1.25rem",
+              fontSize: 15,
+              lineHeight: 1.6,
+            }}
+          >
             Test what you've learned about ENIAC, the IBM System/360, and the Intel 4004 across {totalQ} quick
             questions.
           </p>
@@ -227,12 +234,25 @@ export default function ArchQuiz() {
             ))}
           </div>
 
-          <p style={{ fontSize: 13, color: "var(--color-text-secondary)", margin: "0 0 0.4rem" }}>
+          <p
+            style={{
+              fontSize: 13,
+              color: "var(--color-text-secondary)",
+              margin: "0 0 0.4rem",
+            }}
+          >
             Question {step} of {totalQ}
           </p>
           <h3 style={{ margin: "0 0 1.25rem", fontSize: 18, fontWeight: 500 }}>{currentQ.text}</h3>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: "1.25rem" }}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: 10,
+              marginBottom: "1.25rem",
+            }}
+          >
             {currentQ.options.map((opt, i) => {
               let state = "idle";
               if (locked) {
@@ -304,14 +324,35 @@ export default function ArchQuiz() {
               textAlign: "center",
             }}
           >
-            <div style={{ fontSize: 13, color: "var(--color-text-secondary)", marginBottom: 6 }}>Your score</div>
-            <div style={{ fontSize: 32, fontWeight: 600, color: "var(--color-text-primary)" }}>
+            <div
+              style={{
+                fontSize: 13,
+                color: "var(--color-text-secondary)",
+                marginBottom: 6,
+              }}
+            >
+              Your score
+            </div>
+            <div
+              style={{
+                fontSize: 32,
+                fontWeight: 600,
+                color: "var(--color-text-primary)",
+              }}
+            >
               {score} / {totalQ}
             </div>
           </div>
 
           {/* Per-question review */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: "1.25rem" }}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: 10,
+              marginBottom: "1.25rem",
+            }}
+          >
             {questions.map((q, i) => {
               const correct = answers[i] === q.correct;
               return (
@@ -324,7 +365,13 @@ export default function ArchQuiz() {
                     fontSize: 13,
                   }}
                 >
-                  <div style={{ color: correct ? "#4CAF50" : "#e0524b", fontWeight: 600, marginBottom: 3 }}>
+                  <div
+                    style={{
+                      color: correct ? "#4CAF50" : "#e0524b",
+                      fontWeight: 600,
+                      marginBottom: 3,
+                    }}
+                  >
                     {correct ? "✓ Correct" : "✕ Missed"} — Q{i + 1}
                   </div>
                   <div style={{ color: "var(--color-text-secondary)" }}>{q.explain}</div>
